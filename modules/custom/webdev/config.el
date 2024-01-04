@@ -66,8 +66,8 @@
   (advice-add #'tide-project-root :override #'+javascript-tide-project-root-a)
 
   ;; Cleanup tsserver when no tide buffers are left
-  (add-hook! 'tide-mode-hook
-    (add-hook 'kill-buffer-hook #'+javascript-cleanup-tide-processes-h
+  (add-hook! tide-mode
+    (add-hook! kill-buffer #'+javascript-cleanup-tide-processes-h
               nil 'local))
 
   ;; Eldoc is activated too soon and disables itself, thinking there is no eldoc
@@ -75,6 +75,14 @@
   ;; support exists. It is set *after* tide-mode is enabled, so enabling it on
   ;; `tide-mode-hook' is too early, so...
   (advice-add #'tide-setup :after #'eldoc-mode)
+
+  (require 'web-mode)
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+  (add-hook! web-mode
+    (defun web-mode-tide-h ()
+      (when (string-equal "tsx" (file-name-extension buffer-file-name))
+        (setup-tide-mode))))
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
 
   (map! :localleader
         :map tide-mode-map
@@ -121,4 +129,7 @@
   :defer t)
 
 (use-package! js-comint
+  :defer t)
+
+(use-package! typescript-mode
   :defer t)

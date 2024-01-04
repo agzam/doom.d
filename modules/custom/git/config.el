@@ -196,6 +196,7 @@
 
   ;; forge-topic uses markdown to display images, sometimes they get too big on the screen
   (setq markdown-max-image-size '(700 . nil))
+  (setq forge-buffer-draft-p t)
 
   )
 

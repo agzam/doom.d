@@ -13,3 +13,5 @@
 (package! tide)
 
 (package! js-comint)
+(package! web-mode)
+(package! typescript-mode)

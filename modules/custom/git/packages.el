@@ -9,7 +9,8 @@
   :recipe (:host github
            ;; until PR anticomputer/gh-notify#14 gets merged
 	   :repo "benthamite/gh-notify"
-           :branch "fix/update-forge-functions"))
+           ;; :branch "fix/update-forge-functions"
+           ))
 
 (package! git-link)
 ;; (package! code-review :recipe (:host github :repo "wandersoncferreira/code-review")

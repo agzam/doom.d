@@ -6,7 +6,7 @@
 (defun init-bug-reference-mode-settings ()
   (setq bug-reference-bug-regexp
         (concat "\\(\\b\\(PR \\|[Bb]ug \\|[Ii]ssue \\|\\)" ; type
-                "\\(\\([A-z]+\\/\\)\\|\\)" ; org
+                "\\(\\([A-z]+\\/\\)\\|\\/\\)" ; org
                 "\\([A-z -]+\\)" ; project
                 "#\\([0-9]+\\)\\)" ; ticket No
                 ))
